@@ -36,7 +36,7 @@ class EquipamentosController extends Controller
      */
     public function store(Request $request)
     {
-        $equipamento = new Equipamento();
+        $equipamento = new Equipamentos();
         $equipamento->fill($request->all());
 
         if($equipamento->save()){
@@ -49,7 +49,7 @@ class EquipamentosController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Equipamento $equipamento)
+    public function show(Equipamentos $equipamento)
     {
         $equipamento = Equipamentos::findOrFail($equipamento->id);
         $tipos = Tipo::select('titulo','id')->pluck('titulo','id');
@@ -61,7 +61,7 @@ class EquipamentosController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Equipamento $equipamento)
+    public function edit(Equipamentos $equipamento)
     {
         $equipamento = Equipamentos::findOrFail($equipamento->id);
         $tipos = Tipo::select('titulo','id')->pluck('titulo','id');
@@ -73,7 +73,7 @@ class EquipamentosController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Equipamento $equipamento)
+    public function update(Request $request, Equipamentos $equipamento)
     {
 
         $equipamento = Equipamentos::findOrFail($equipamento->id);
@@ -89,9 +89,9 @@ class EquipamentosController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Equipamento $equipamento)
+    public function destroy(Equipamentos $equipamento)
     {
-        
+
         $equipamento->delete();
 
         return Redirect::to('equipamento')->with('menssagem_sucesso','equipamento removido com sucesso');
