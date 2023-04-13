@@ -56,7 +56,7 @@ class ReservasController extends Controller
      */
     public function show($reservas)
     {
-        
+
         $reserva = Reservas::findOrFail($reservas);
 
         $clientes = Clientes::select('nome','id')->pluck('nome','id');
@@ -103,6 +103,8 @@ class ReservasController extends Controller
     public function destroy($reservas)
     {
 
+        $reservas = Reservas::findOrFail($reservas);
+
         $reservas->delete();
 
         if(!$reservas){
@@ -117,10 +119,10 @@ class ReservasController extends Controller
         $date = Carbon::now();
 
         $reserva = Reservas::findOrFail($id);
-    
+
         $reserva->devolucao = $date;
         $reserva->save();
-    
+
         if($reserva){
             return Redirect::to('reservas')->with('menssagem_erro','Erro ao devolver a Reserva');
         }else{
